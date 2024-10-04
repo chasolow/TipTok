@@ -142,7 +142,7 @@ if st.button('РАССЧЁТ'):
             cost = round(((X * Gx + Y * Gy) * Kp * Ku_value * Ktg_value * Kc_value + X * Gz) / 100) * 100
             st.markdown(
                 f"""
-                <div style='background-color: rgba(46, 139, 87, 0.3); padding: 20px; border-radius: 10px; text-align: center;'>
+                <div style='background-color: rgba(46, 139, 87, 0.15); padding: 20px; border-radius: 10px; text-align: center;'>
                     <h1 style='color: #F4B03F;'>Общая стоимость: {cost} рублей</h1>
                 </div>
                 """,
