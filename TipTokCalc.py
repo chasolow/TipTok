@@ -74,7 +74,7 @@ power_question = st.radio("", ['⚡️ Да', '❌ Нет'], index=0)
 if power_question == '⚡️ Да':
     P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=0)
     st.markdown("Введите дополнительную мощность (P<sub>доп</sub>, кВт):", unsafe_allow_html=True)
-    Pdop = st.number_input("", min_value=0, max_value=500000, step=1, value=0)
+    Pdop = st.number_input("", min_value=0, max_value=500000, step=1, value=0, index=0)
 else:
     P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=0)
     Pdop = None
