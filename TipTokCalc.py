@@ -66,7 +66,7 @@ st.image(image)
 st.markdown("<h1>Расчет стоимости услуг</h1>", unsafe_allow_html=True)
 
 # Используем HTML для увеличенного текста
-st.markdown('<div class="large-text">Есть ли на объекте существующая мощность согласно техническим условиям?</div>', unsafe_allow_html=True)
+st.markdown('<div class="large-text">Есть ли на объекте существующая мощность согласно техническим условиям?</div><br>', unsafe_allow_html=True)
 power_question = st.radio("", ['⚡️ Да', '❌ Нет'], index=0)
 
 # Поля для ввода мощности с использованием number_input
