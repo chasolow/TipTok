@@ -70,11 +70,12 @@ st.markdown("<h1>Расчет стоимости услуг</h1>", unsafe_allow_
 st.markdown(
     """
     <div style='background-color: rgba(128, 128, 128, 0.05); padding: 20px; border-radius: 10px;'>
+        <h3 style='margin-bottom: 10px;'>Есть ли на объекте существующая мощность согласно техническим условиям?</h3>
     """,
     unsafe_allow_html=True
 )
 
-power_question = st.radio("Есть ли на объекте существующая мощность согласно техническим условиям?", ['⚡️ Да', '❌ Нет'], index=0)
+power_question = st.radio("", ['⚡️ Да', '❌ Нет'], index=0)
 
 # Поля для ввода мощности с использованием number_input
 if power_question == '⚡️ Да':
