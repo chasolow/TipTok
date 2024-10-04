@@ -16,6 +16,7 @@ st.markdown("""
         }
         h1, h3 {
             color: #F4B03F !important;
+            text-align: center;  /* Выравнивание по центру */
         }
         .stButton button {
             background-color: #F4B03F !important;
@@ -46,7 +47,7 @@ image = Image.open(BytesIO(response.content))
 st.image(image)
 
 # Заголовок
-st.markdown("<h1 style='text-align: center;'>Рассчет стоимости услуг</h1>", unsafe_allow_html=True)
+st.markdown("<h1>Рассчет стоимости услуг</h1>", unsafe_allow_html=True)
 
 # Вопрос о мощности с новыми вариантами
 power_question = st.radio("Есть ли на объекте существующая мощность согласно техническим условиям?", ['⚡️ Да', '❌ Нет'])
