@@ -13,6 +13,7 @@ st.markdown("""
         body {
             font-family: 'Cascadia Mono', monospace;
             color: #F4B03F;
+            background-color: #1e1e1e;  /* Цвет фона, если нужно */
         }
         h1, h3 {
             color: #F4B03F !important;
@@ -23,6 +24,18 @@ st.markdown("""
             color: #535353 !important;
             font-weight: bold !important;
             font-size: 16px !important;
+            border: none !important;  /* Убираем рамку */
+        }
+        .stButton button:hover {
+            background-color: #F4B03F !important;  /* Цвет кнопки при наведении */
+        }
+        .stTextInput input {
+            border: 2px solid #F4B03F !important;  /* Цвет рамки текстовых полей */
+            color: #F4B03F !important;  /* Цвет текста */
+        }
+        .stTextInput input:focus {
+            border-color: #F4B03F !important;  /* Цвет рамки при фокусе */
+            box-shadow: 0 0 5px #F4B03F !important;  /* Эффект подсветки */
         }
         img {
             width: 100%;
@@ -47,7 +60,7 @@ image = Image.open(BytesIO(response.content))
 st.image(image)
 
 # Заголовок
-st.markdown("<h1>Рассчет стоимости услуг</h1>", unsafe_allow_html=True)
+st.markdown("<h1>Расчет стоимости услуг</h1>", unsafe_allow_html=True)
 
 # Вопрос о мощности с новыми вариантами
 power_question = st.radio("Есть ли на объекте существующая мощность согласно техническим условиям?", ['⚡️ Да', '❌ Нет'])
