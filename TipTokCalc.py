@@ -12,7 +12,7 @@ st.markdown("""
         }
         body {
             font-family: 'Cascadia Mono', monospace;
-            color: #F4B03F;
+            color: #F4B03F;  /* Цвет текста по умолчанию */
             background-color: #1e1e1e;  /* Цвет фона */
         }
         h1, h3 {
@@ -44,6 +44,10 @@ st.markdown("""
         .stNumberInput input:focus {
             border-color: #F4B03F !important;  /* Цвет рамки при фокусе для number_input */
             box-shadow: 0 0 5px #F4B03F !important;  /* Эффект подсветки для number_input */
+        }
+        /* Стили для радио-кнопок */
+        .stRadio label {
+            color: #F4B03F !important;  /* Цвет текста для радио-кнопок */
         }
         img {
             width: 100%;
