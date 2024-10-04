@@ -37,6 +37,10 @@ st.markdown("""
             border-color: #F4B03F !important;  /* Цвет рамки при фокусе */
             box-shadow: 0 0 5px #F4B03F !important;  /* Эффект подсветки */
         }
+        .large-text {
+            font-size: 20px; /* Увеличьте размер шрифта здесь */
+            color: #F4B03F; /* Цвет текста, если нужно */
+        }
         img {
             width: 100%;
         }
@@ -62,8 +66,9 @@ st.image(image)
 # Заголовок
 st.markdown("<h1>Расчет стоимости услуг</h1>", unsafe_allow_html=True)
 
-# Вопрос о мощности с новыми вариантами
-power_question = st.radio("Есть ли на объекте существующая мощность согласно техническим условиям?", ['⚡️ Да', '❌ Нет'])
+# Используем HTML для увеличенного текста
+st.markdown('<div class="large-text">Есть ли на объекте существующая мощность согласно техническим условиям?</div>', unsafe_allow_html=True)
+power_question = st.radio("", ['⚡️ Да', '❌ Нет'])
 
 # Поля для ввода мощности с использованием number_input
 if power_question == '⚡️ Да':
