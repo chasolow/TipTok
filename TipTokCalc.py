@@ -80,6 +80,8 @@ else:
 P = float(P)
 Pdop = float(Pdop) if Pdop else None
 
+print('/n')
+
 # Выбор класса напряжения с помощью radio
 voltage_classes = {
     "До 1000 В": 1,
