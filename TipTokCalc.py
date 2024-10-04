@@ -96,22 +96,8 @@ Ku_value = voltage_classes[Ku]
 
 st.markdown("", unsafe_allow_html=True) #Разрыв
 
-# Вопрос о компенсации реактивной мощности
-st.markdown("""
-    <div style="background-color: rgba(240, 240, 240, 0.9); border-radius: 0px; padding: 0px;">
-        <h1 style="text-align:center;">Есть ли в технических условиях пункт по компенсации реактивной мощности?</h1>
-        <div style="display: flex; flex-direction: column;">
-            <label>
-                <input type="radio" name="Ktg" value="✅ Есть"> ✅ Есть
-            </label>
-            <label>
-                <input type="radio" name="Ktg" value="❌ Нет"> ❌ Нет
-            </label>
-        </div>
-    </div>
-""", unsafe_allow_html=True)
-
-
+# Вопрос о компенсации реактивной мощности 
+Ktg = st.radio("Есть ли в технических условиях пункт по компенсации реактивной мощности?", ['✅ Есть', '❌ Нет'])
 
 st.markdown("", unsafe_allow_html=True) #Разрыв
 
