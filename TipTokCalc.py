@@ -79,18 +79,18 @@ power_question = st.radio("", ['⚡️ Да', '❌ Нет'], index=0)
 
 # Поля для ввода мощности с использованием number_input
 if power_question == '⚡️ Да':
-    P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=0)
-    Pdop = st.number_input("Введите дополнительную мощность (Pдоп, кВт):", min_value=0, max_value=500000, step=1, value=0)
+    st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=0, key="P_input")
+    st.number_input("Введите дополнительную мощность (Pдоп, кВт):", min_value=0, max_value=500000, step=1, value=0, key="Pdop_input")
 else:
-    P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=0)
+    st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=0, key="P_input")
     Pdop = None
 
 # Закрываем обертку
 st.markdown("</div>", unsafe_allow_html=True)
 
 # Преобразуем текст в числа для расчетов
-P = float(P)
-Pdop = float(Pdop) if Pdop else None
+P = float(st.session_state.get("P_input", 0))  # Получаем значение P из session_state
+Pdop = float(st.session_state.get("Pdop_input", 0)) if 'Pdop_input' in st.session_state else None
 
 
 st.markdown("", unsafe_allow_html=True) #Разрыв
