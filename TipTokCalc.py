@@ -12,12 +12,20 @@ st.markdown("""
         }
         body {
             font-family: 'Cascadia Mono', monospace;
-            color: #F4B03F;  /* Цвет текста по умолчанию */
+            color: #F4B03F;
             background-color: #1e1e1e;  /* Цвет фона */
         }
         h1, h3 {
             color: #F4B03F !important;
             text-align: center;  /* Выравнивание по центру */
+            font-size: 24px !important;  /* Размер шрифта заголовков */
+        }
+        .stRadio label {
+            font-size: 18px !important;  /* Размер шрифта для radio-кнопок */
+            color: #F4B03F !important;  /* Цвет текста */
+        }
+        .stRadio label input[type="radio"] {
+            transform: scale(1.2);  /* Увеличение размера радио-кнопок */
         }
         .stButton button {
             background-color: #F4B03F !important;
@@ -45,10 +53,6 @@ st.markdown("""
             border-color: #F4B03F !important;  /* Цвет рамки при фокусе для number_input */
             box-shadow: 0 0 5px #F4B03F !important;  /* Эффект подсветки для number_input */
         }
-        /* Стили для радио-кнопок */
-        .stRadio label {
-            color: #F4B03F !important;  /* Цвет текста для радио-кнопок */
-        }
         img {
             width: 100%;
         }
@@ -60,6 +64,7 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
+
 
 # URL изображения
 image_url = "https://i.postimg.cc/vZmHCG8k/big.png"
