@@ -13,19 +13,11 @@ st.markdown("""
         body {
             font-family: 'Cascadia Mono', monospace;
             color: #F4B03F;
-            background-color: #1e1e1e;  /* Цвет фона */
+            background-color: #1e1e1e;  /* Цвет фона, если нужно */
         }
         h1, h3 {
             color: #F4B03F !important;
             text-align: center;  /* Выравнивание по центру */
-            font-size: 24px !important;  /* Размер шрифта заголовков */
-        }
-        .stRadio label {
-            font-size: 18px !important;  /* Размер шрифта для radio-кнопок */
-            color: #F4B03F !important;  /* Цвет текста */
-        }
-        .stRadio label input[type="radio"] {
-            transform: scale(1.2);  /* Увеличение размера радио-кнопок */
         }
         .stButton button {
             background-color: #F4B03F !important;
@@ -44,14 +36,6 @@ st.markdown("""
         .stTextInput input:focus {
             border-color: #F4B03F !important;  /* Цвет рамки при фокусе */
             box-shadow: 0 0 5px #F4B03F !important;  /* Эффект подсветки */
-        }
-        .stNumberInput input {
-            border: 2px solid #F4B03F !important;  /* Цвет рамки для number_input */
-            color: #F4B03F !important;  /* Цвет текста */
-        }
-        .stNumberInput input:focus {
-            border-color: #F4B03F !important;  /* Цвет рамки при фокусе для number_input */
-            box-shadow: 0 0 5px #F4B03F !important;  /* Эффект подсветки для number_input */
         }
         img {
             width: 100%;
