@@ -52,6 +52,11 @@ st.markdown("""
                 height: auto;
             }
         }
+        .center-button {
+            display: flex;
+            justify-content: center; /* Центрирование по горизонтали */
+            margin: 20px 0; /* Отступы сверху и снизу */
+        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -122,7 +127,7 @@ Kc = st.radio("Требуется ли сопровождение согласо
 st.markdown("", unsafe_allow_html=True) # Разрыв
 
 # Центрирование кнопки
-st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
+st.markdown("<div class='center-button'>", unsafe_allow_html=True)
 
 # Кнопка расчета
 if st.button('РАСЧЁТ'):
