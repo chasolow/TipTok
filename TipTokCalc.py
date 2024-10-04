@@ -13,7 +13,7 @@ st.markdown("""
         body {
             font-family: 'Cascadia Mono', monospace;
             color: #F4B03F;
-            background-color: #1e1e1e;  /* Цвет фона, если нужно */
+            background-color: #1e1e1e;  /* Цвет фона */
         }
         h1, h3 {
             color: #F4B03F !important;
@@ -36,6 +36,14 @@ st.markdown("""
         .stTextInput input:focus {
             border-color: #F4B03F !important;  /* Цвет рамки при фокусе */
             box-shadow: 0 0 5px #F4B03F !important;  /* Эффект подсветки */
+        }
+        .stNumberInput input {
+            border: 2px solid #F4B03F !important;  /* Цвет рамки для number_input */
+            color: #F4B03F !important;  /* Цвет текста */
+        }
+        .stNumberInput input:focus {
+            border-color: #F4B03F !important;  /* Цвет рамки при фокусе для number_input */
+            box-shadow: 0 0 5px #F4B03F !important;  /* Эффект подсветки для number_input */
         }
         img {
             width: 100%;
