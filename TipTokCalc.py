@@ -65,7 +65,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-
 # URL изображения
 image_url = "https://i.postimg.cc/vZmHCG8k/big.png"
 
