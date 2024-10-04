@@ -74,7 +74,7 @@ voltage_classes = {
 Ku = st.radio("Класс напряжения в точке присоединения:", list(voltage_classes.keys()))
 
 # Получаем значение Ku_value на основе выбранного класса напряжения
-Ku_value = voltage_classes[Ku]
+Ku_value = float(voltage_classes[Ku])
 
 
 
