@@ -24,7 +24,7 @@ st.markdown("""
             font-size: 16px !important;
         }
         img {
-            width: 580px;
+            width: 100%;
         }
         @media screen and (max-width: 600px) {
             img {
