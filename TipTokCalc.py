@@ -38,8 +38,7 @@ st.markdown("""
             box-shadow: 0 0 5px #F4B03F !important;  /* Эффект подсветки */
         }
         .large-text {
-            font-size: 20px; /* Увеличьте размер шрифта здесь */
-            color: #F4B03F; /* Цвет текста, если нужно */
+            font-size: 18px; /* Увеличьте размер шрифта здесь */
         }
         img {
             width: 100%;
@@ -72,7 +71,7 @@ power_question = st.radio("", ['⚡️ Да', '❌ Нет'])
 
 # Поля для ввода мощности с использованием number_input
 if power_question == '⚡️ Да':
-    P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=0)
+    P = st.number_input('<div class="large-text">Введите суммарную мощность объекта (P, кВт):</div>', min_value=0, max_value=500000, step=1, value=0)
     Pdop = st.number_input("Введите дополнительную мощность (Pдоп, кВт):", min_value=0, max_value=500000, step=1, value=0)
 else:
     P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=0)
