@@ -37,8 +37,11 @@ st.markdown("""
             border-color: #F4B03F !important;  /* Цвет рамки при фокусе */
             box-shadow: 0 0 5px #F4B03F !important;  /* Эффект подсветки */
         }
-        .large-text {
-            font-size: 18px; /* Увеличьте размер шрифта здесь */
+        .rounded-box {
+            border-radius: 15px;  /* Скругленные углы */
+            background-color: rgba(128, 128, 128, 0.7);  /* Серый фон с прозрачностью 70% */
+            padding: 20px;  /* Отступы внутри рамки */
+            margin: 20px;  /* Отступы вокруг рамки */
         }
         img {
             width: 100%;
@@ -65,17 +68,24 @@ st.image(image)
 # Заголовок
 st.markdown("<h1>Расчет стоимости услуг</h1>", unsafe_allow_html=True)
 
-# Используем HTML для увеличенного текста
-power_question = st.radio("Есть ли на объекте существующая мощность согласно техническим условиям?", ['⚡️ Да', '❌ Нет'], index=0)
+# Обернуть блок в див с классом rounded-box
+with st.container():
+    st.markdown('<div class="rounded-box">', unsafe_allow_html=True)
 
+    # Используем HTML для увеличенного текста
+    power_question = st.radio("Есть ли на объекте существующая мощность согласно техническим условиям?", ['⚡️ Да', '❌ Нет'], index=0)
 
-# Поля для ввода мощности с использованием number_input
-if power_question == '⚡️ Да':
-    P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=0)
-    Pdop = st.number_input("Введите дополнительную мощность (Pдоп, кВт):", min_value=0, max_value=500000, step=1, value=0)
-else:
-    P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=0)
-    Pdop = None
+    # Поля для ввода мощности с использованием number_input
+    if power_question == '⚡️ Да':
+        P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=0)
+        st.markdown("Введите дополнительную мощность (P<sub>доп</sub>, кВт):", unsafe_allow_html=True)
+        Pdop = st.number_input("", min_value=0, max_value=500000, step=1, value=0)
+    else:
+        P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=0)
+        Pdop = None
+
+    # Закрываем див
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Преобразуем текст в числа для расчетов
 P = float(P)
