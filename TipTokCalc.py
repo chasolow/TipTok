@@ -23,6 +23,15 @@ st.markdown("""
             font-weight: bold !important;
             font-size: 16px !important;
         }
+        img {
+            width: 580px;
+        }
+        @media screen and (max-width: 600px) {
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -34,10 +43,10 @@ response = requests.get(image_url)
 image = Image.open(BytesIO(response.content))
 
 # Отображаем изображение
-st.image(image, width=580)
+st.image(image)
 
 # Заголовок
-st.markdown("<h1 style='text-align: center;'>Рассчет стоимости услуг</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>Рассчет Ё стоимости услуг</h1>", unsafe_allow_html=True)
 
 # Вопрос о мощности
 power_question = st.radio("Есть ли на объекте существующая мощность согласно техническим условиям?", ['Да', 'Нет'])
