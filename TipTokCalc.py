@@ -26,7 +26,7 @@ st.markdown("""
         img {
             width: 100%;
         }
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 550px) {
             img {
                 width: 100%;
                 height: auto;
