@@ -80,7 +80,7 @@ else:
 P = float(P)
 Pdop = float(Pdop) if Pdop else None
 
-st.markdown("<h1>/n</h1>", unsafe_allow_html=True)
+st.markdown("<h3></h3>", unsafe_allow_html=True)
 
 # Выбор класса напряжения с помощью radio
 voltage_classes = {
