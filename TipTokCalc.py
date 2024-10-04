@@ -80,7 +80,7 @@ else:
 P = float(P)
 Pdop = float(Pdop) if Pdop else None
 
-print('/n')
+print('/n/n')
 
 # Выбор класса напряжения с помощью radio
 voltage_classes = {
@@ -89,7 +89,7 @@ voltage_classes = {
     "110 кВ": 1.2,
     "220 кВ": 1.3
 }
-Ku = st.radio("Класс напряжения в точке присоединения:", list(voltage_classes.keys()))
+Ku = st.radio("/nКласс напряжения в точке присоединения:", list(voltage_classes.keys()))
 
 # Получаем значение Ku_value на основе выбранного класса напряжения
 Ku_value = voltage_classes[Ku]
