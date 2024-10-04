@@ -140,7 +140,8 @@ if st.button('РАССЧЁТ'):
 
             # Общая стоимость
             cost = round(((X * Gx + Y * Gy) * Kp * Ku_value * Ktg_value * Kc_value + X * Gz) / 100) * 100
-            st.success(f"Общая стоимость: {cost} рублей")
+            st.markdown(f"<h2 style='color: #F4B03F;'>Общая стоимость: {cost} рублей</h2>", unsafe_allow_html=True)
+
 
     except ZeroDivisionError:
         st.error("Ошибка: деление на ноль невозможно.")
