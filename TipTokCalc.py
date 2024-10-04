@@ -23,8 +23,11 @@ st.markdown("""
             background-color: #F4B03F !important;
             color: #535353 !important;
             font-weight: bold !important;
-            font-size: 16px !important;
+            font-size: 20px !important;  /* Увеличьте размер шрифта */
             border: none !important;  /* Убираем рамку */
+            padding: 10px 20px !important;  /* Увеличиваем отступы */
+            border-radius: 5px;  /* Скругляем углы */
+            cursor: pointer;  /* Указатель при наведении */
         }
         .stButton button:hover {
             background-color: #F4B03F !important;  /* Цвет кнопки при наведении */
@@ -80,7 +83,7 @@ else:
 P = float(P)
 Pdop = float(Pdop) if Pdop else None
 
-st.markdown("", unsafe_allow_html=True) #Разрыв
+st.markdown("", unsafe_allow_html=True) # Разрыв
 
 # Выбор класса напряжения с помощью radio
 voltage_classes = {
@@ -94,12 +97,12 @@ Ku = st.radio("Класс напряжения в точке присоедин�
 # Получаем значение Ku_value на основе выбранного класса напряжения
 Ku_value = voltage_classes[Ku]
 
-st.markdown("", unsafe_allow_html=True) #Разрыв
+st.markdown("", unsafe_allow_html=True) # Разрыв
 
 # Вопрос о компенсации реактивной мощности 
 Ktg = st.radio("Есть ли в технических условиях пункт по компенсации реактивной мощности?", ['✅ Есть', '❌ Нет'])
 
-st.markdown("", unsafe_allow_html=True) #Разрыв
+st.markdown("", unsafe_allow_html=True) # Разрыв
 
 # Вопрос о схемах питания
 schemes = st.radio("Есть ли схемы питания электроприемников на объекте?", ['✅ Есть', '❌ Нет'])
@@ -111,15 +114,18 @@ else:
     Y = st.number_input("Количество электроприемников:", min_value=0, max_value=5000, step=1, value=0)
     X = Y * 1.05
 
-st.markdown("", unsafe_allow_html=True) #Разрыв
+st.markdown("", unsafe_allow_html=True) # Разрыв
 
 # Вопрос о сопровождении согласования 
 Kc = st.radio("Требуется ли сопровождение согласования РД в электрических сетях?", ['📝 Требуется', '❌ Не требуется'])
 
-st.markdown("", unsafe_allow_html=True) #Разрыв
+st.markdown("", unsafe_allow_html=True) # Разрыв
+
+# Центрирование кнопки
+st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
 
 # Кнопка расчета
-if st.button('РАССЧЁТ'):
+if st.button('РАСЧЁТ'):
     try:
         if P <= 0:
             st.error("Параметры должны быть больше нуля")
@@ -148,11 +154,9 @@ if st.button('РАССЧЁТ'):
                 """,
                 unsafe_allow_html=True
             )
-
-
-
-
     except ZeroDivisionError:
         st.error("Ошибка: деление на ноль невозможно.")
     except ValueError as e:
         st.error(f"Ошибка: {e}")
+
+st.markdown("</div>", unsafe_allow_html=True)
