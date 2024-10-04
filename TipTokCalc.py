@@ -140,7 +140,15 @@ if st.button('РАССЧЁТ'):
 
             # Общая стоимость
             cost = round(((X * Gx + Y * Gy) * Kp * Ku_value * Ktg_value * Kc_value + X * Gz) / 100) * 100
-            st.markdown(f"<h2 style='color: #F4B03F;'>Общая стоимость: {cost} рублей</h2>", unsafe_allow_html=True)
+            st.markdown(
+                f"""
+                <div style='background-color: #2E8B57; padding: 20px; border-radius: 10px; text-align: center;'>
+                    <h1 style='color: #F4B03F;'>Общая стоимость: {cost} рублей</h1>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
 
 
     except ZeroDivisionError:
