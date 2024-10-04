@@ -98,8 +98,8 @@ st.markdown("", unsafe_allow_html=True) #Разрыв
 
 # Вопрос о компенсации реактивной мощности
 st.markdown("""
-    <div style="background-color: #f0f0f0; border-radius: 10px; padding: 10px;">
-        <h3>Есть ли в технических условиях пункт по компенсации реактивной мощности?</h3>
+    <div style="background-color: rgba(240, 240, 240, 0.9); border-radius: 0px; padding: 0px;">
+        <h1 style="text-align:center;">Есть ли в технических условиях пункт по компенсации реактивной мощности?</h1>
         <div style="display: flex; flex-direction: column;">
             <label>
                 <input type="radio" name="Ktg" value="✅ Есть"> ✅ Есть
@@ -110,6 +110,7 @@ st.markdown("""
         </div>
     </div>
 """, unsafe_allow_html=True)
+
 
 
 st.markdown("", unsafe_allow_html=True) #Разрыв
