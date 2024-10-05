@@ -65,21 +65,20 @@ st.image(image)
 # Заголовок
 st.markdown("<h1>Расчет стоимости услуг</h1>", unsafe_allow_html=True)
 
-
+# Используем HTML для увеличенного текста
 power_question = st.radio("Есть ли на объекте существующая мощность согласно техническим условиям?", ['⚡️ Да', '❌ Нет'], index=0)
 
 # Поля для ввода мощности с использованием number_input
 if power_question == '⚡️ Да':
     P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=None)
     Pdop = st.number_input("Введите дополнительную мощность (Pдоп, кВт):", min_value=0, max_value=500000, step=1, value=None)
-
 else:
     P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=None)
     Pdop = None
 
 # Преобразуем текст в числа для расчетов
-P = float(P)
-Pdop = float(Pdop) if Pdop else None
+#P = float(P)
+#Pdop = float(Pdop) if Pdop else None
 
 st.markdown("", unsafe_allow_html=True) #Разрыв
 
