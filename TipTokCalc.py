@@ -111,8 +111,15 @@ if st.button('РАСЧЁТ'):
                 'Согласование': Kc,
                 'Стоимость': cost
             }
-            df = df._append(new_entry, ignore_index=True)
-            df.to_excel(stats_file, index=False)
+
+            df = df.append(new_entry, ignore_index=True)
+
+            # Сохранение DataFrame в Excel
+            try:
+                df.to_excel(stats_file, index=False)
+                st.success("Данные успешно сохранены в файл statistics.xlsx")
+            except Exception as e:
+                st.error(f"Ошибка при сохранении в Excel: {e}")
 
     except ZeroDivisionError:
         st.error("Ошибка: деление на ноль невозможно.")
