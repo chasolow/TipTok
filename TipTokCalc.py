@@ -96,7 +96,9 @@ if st.button('РАСЧЁТ'):
             )
 
             # Сбор статистики и запись в Excel
-            file_path = r"C:\Users\wanss\OneDrive\Рабочий стол\TipTok\Calc_stat_test.xlsx"  # Сохраняем в новый файл
+            file_path = r"C:\Users\wanss\OneDrive\Рабочий стол\Документы\Calc_stat_test.xlsx"  # Измените путь на "Документы"
+            st.write(f"Путь к файлу: {file_path}")
+
             if os.path.isfile(file_path):
                 df = pd.read_excel(file_path)
                 new_index = len(df) + 1
@@ -128,7 +130,7 @@ if st.button('РАСЧЁТ'):
 
             # Попробуем записать в Excel с помощью ExcelWriter
             try:
-                with pd.ExcelWriter(file_path, engine='openpyxl', mode='a' if os.path.isfile(file_path) else 'w') as writer:
+                with pd.ExcelWriter(file_path, engine='openpyxl', mode='w' if not os.path.isfile(file_path) else 'a') as writer:
                     df.to_excel(writer, index=False)
                 st.success("Данные успешно записаны в файл.")
             except Exception as e:
