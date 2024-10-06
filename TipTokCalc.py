@@ -7,8 +7,8 @@ import os
 
 # Подключаем стили
 st.markdown(""" 
-    <style> 
-        /* Ваши стили */ 
+    <style>
+        ...
     </style>
 """, unsafe_allow_html=True)
 
@@ -36,6 +36,8 @@ else:
     P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=None)
     Pdop = None
 
+st.markdown("", unsafe_allow_html=True) # Разрыв
+
 # Выбор класса напряжения с помощью radio
 voltage_classes = {
     "До 1000 В": 1,
@@ -48,8 +50,12 @@ Ku = st.radio("Класс напряжения в точке присоедин�
 # Получаем значение Ku_value на основе выбранного класса напряжения
 Ku_value = voltage_classes[Ku]
 
+st.markdown("", unsafe_allow_html=True) # Разрыв
+
 # Вопрос о компенсации реактивной мощности 
 Ktg = st.radio("Есть ли в технических условиях пункт по компенсации реактивной мощности?", ['✅ Есть', '❌ Нет'])
+
+st.markdown("", unsafe_allow_html=True) # Разрыв
 
 # Вопрос о схемах питания
 schemes = st.radio("Есть ли схемы питания электроприемников на объекте?", ['✅ Есть', '❌ Нет'])
@@ -61,8 +67,12 @@ else:
     Y = st.number_input("Количество электроприемников:", min_value=0, max_value=5000, step=1, value=None)
     X = Y * 1.05
 
+st.markdown("", unsafe_allow_html=True) # Разрыв
+
 # Вопрос о сопровождении согласования 
 Kc = st.radio("Требуется ли сопровождение согласования РД в электрических сетях?", ['📝 Требуется', '❌ Не требуется'])
+
+st.markdown("", unsafe_allow_html=True) # Разрыв
 
 # Кнопка расчета
 if st.button('РАСЧЁТ'):
@@ -95,24 +105,16 @@ if st.button('РАСЧЁТ'):
                 unsafe_allow_html=True
             )
 
-            # Сбор статистики и запись в Excel
-            file_path = r"C:\Users\wanss\OneDrive\Рабочий стол\Документы\Calc_stat_test.xlsx"  # Измените путь на "Документы"
-            st.write(f"Путь к файлу: {file_path}")
-
-            if os.path.isfile(file_path):
-                df = pd.read_excel(file_path)
-                new_index = len(df) + 1
-                st.write("Файл существует, добавление новой записи.")
+            # Сбор статистики
+            statistics_file_path = r"C:\Users\wanss\OneDrive\Рабочий стол\TipTok\Calc_stat.xlsx"
+            if os.path.isfile(statistics_file_path):
+                df = pd.read_excel(statistics_file_path)
             else:
                 df = pd.DataFrame(columns=["№", "Тип услуги", "P", "Pдоп", "U", "КРМ", "Схемы", "Участки", "ЭП", "Согласование", "Стоимость"])
-                new_index = 1
-                st.write("Создан новый файл.")
 
-            # Проверка перед добавлением
-            st.write(f"Проверяем данные для добавления: {new_index}, 'КЭЭ', {P}, {Pdop}, {Ku}, {Ktg}, {schemes}, {X}, {Y}, {Kc}, {cost}")
-
+            # Добавляем новую строку
             new_row = {
-                "№": new_index,
+                "№": len(df) + 1,
                 "Тип услуги": "КЭЭ",
                 "P": P,
                 "Pдоп": Pdop,
@@ -125,16 +127,11 @@ if st.button('РАСЧЁТ'):
                 "Стоимость": cost
             }
 
-            # Добавление новой строки
-            df = df.append(new_row, ignore_index=True)
+            df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
 
-            # Попробуем записать в Excel с помощью ExcelWriter
-            try:
-                with pd.ExcelWriter(file_path, engine='openpyxl', mode='w' if not os.path.isfile(file_path) else 'a') as writer:
-                    df.to_excel(writer, index=False)
-                st.success("Данные успешно записаны в файл.")
-            except Exception as e:
-                st.error(f"Ошибка записи в файл: {e}")
+            # Записываем данные в Excel
+            with pd.ExcelWriter(statistics_file_path, engine='openpyxl', mode='w' if not os.path.isfile(statistics_file_path) else 'a') as writer:
+                df.to_excel(writer, index=False)
 
     except ZeroDivisionError:
         st.error("Ошибка: деление на ноль невозможно.")
