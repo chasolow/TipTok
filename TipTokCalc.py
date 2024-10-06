@@ -96,7 +96,7 @@ if st.button('РАСЧЁТ'):
             )
 
             # Сбор статистики и запись в Excel
-            file_path = r"C:\Users\wanss\OneDrive\Рабочий стол\TipTok\Calc_stat.xlsx"
+            file_path = r"C:\Users\wanss\OneDrive\Рабочий стол\TipTok\Calc_stat_test.xlsx"  # Сохраняем в новый файл
             if os.path.isfile(file_path):
                 df = pd.read_excel(file_path)
                 new_index = len(df) + 1
