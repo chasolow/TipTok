@@ -15,32 +15,32 @@ st.markdown("""
         body {
             font-family: 'Cascadia Mono', monospace;
             color: #F4B03F;
-            background-color: #1e1e1e;  /* Цвет фона, если нужно */
+            background-color: #1e1e1e;  
         }
         h1, h3 {
             color: #F4B03F !important;
-            text-align: center;  /* Выравнивание по центру */
+            text-align: center;  
         }
         .stButton button {
             background-color: #F4B03F !important;
             color: #535353 !important;
             font-weight: bold !important;
             font-size: 16px !important;
-            border: none !important;  /* Убираем рамку */
+            border: none !important;  
         }
         .stButton button:hover {
-            background-color: #F4B03F !important;  /* Цвет кнопки при наведении */
+            background-color: #F4B03F !important;  
         }
         .stTextInput input {
-            border: 2px solid #F4B03F !important;  /* Цвет рамки текстовых полей */
-            color: #F4B03F !important;  /* Цвет текста */
+            border: 2px solid #F4B03F !important;  
+            color: #F4B03F !important;  
         }
         .stTextInput input:focus {
-            border-color: #F4B03F !important;  /* Цвет рамки при фокусе */
-            box-shadow: 0 0 5px #F4B03F !important;  /* Эффект подсветки */
+            border-color: #F4B03F !important;  
+            box-shadow: 0 0 5px #F4B03F !important;  
         }
         .large-text {
-            font-size: 18px; /* Увеличьте размер шрифта здесь */
+            font-size: 18px; 
         }
         img {
             width: 100%;
@@ -78,7 +78,7 @@ else:
     P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=None)
     Pdop = None
 
-st.markdown("", unsafe_allow_html=True) # Разрыв
+st.markdown("", unsafe_allow_html=True) 
 
 # Выбор класса напряжения с помощью radio
 voltage_classes = {
@@ -92,12 +92,12 @@ Ku = st.radio("Класс напряжения в точке присоедин�
 # Получаем значение Ku_value на основе выбранного класса напряжения
 Ku_value = voltage_classes[Ku]
 
-st.markdown("", unsafe_allow_html=True) # Разрыв
+st.markdown("", unsafe_allow_html=True) 
 
 # Вопрос о компенсации реактивной мощности 
 Ktg = st.radio("Есть ли в технических условиях пункт по компенсации реактивной мощности?", ['✅ Есть', '❌ Нет'])
 
-st.markdown("", unsafe_allow_html=True) # Разрыв
+st.markdown("", unsafe_allow_html=True) 
 
 # Вопрос о схемах питания
 schemes = st.radio("Есть ли схемы питания электроприемников на объекте?", ['✅ Есть', '❌ Нет'])
@@ -109,12 +109,12 @@ else:
     Y = st.number_input("Количество электроприемников:", min_value=0, max_value=5000, step=1, value=None)
     X = Y * 1.05
 
-st.markdown("", unsafe_allow_html=True) # Разрыв
+st.markdown("", unsafe_allow_html=True) 
 
 # Вопрос о сопровождении согласования 
 Kc = st.radio("Требуется ли сопровождение согласования РД в электрических сетях?", ['📝 Требуется', '❌ Не требуется'])
 
-st.markdown("", unsafe_allow_html=True) # Разрыв
+st.markdown("", unsafe_allow_html=True) 
 
 # Путь к файлу статистики
 statistics_file_path = r"C:\Users\wanss\OneDrive\Рабочий стол\TipTok\Calc_stat.xlsx"
@@ -133,7 +133,7 @@ if st.button('РАСЧЁТ'):
             if schemes == '✅ Есть':
                 Gx = 1892.9 * X ** -0.544
                 Gy = 379.89 * Y ** -0.271
-                Gz = 0  # Gz не рассчитываем
+                Gz = 0  
             else:
                 Gx = 1892.9 * X ** -0.544
                 Gy = 379.89 * Y ** -0.271
@@ -179,6 +179,7 @@ if st.button('РАСЧЁТ'):
                 df.to_excel(writer, index=False)
 
             st.success("Данные успешно записаны в файл.")
+            st.write(df)  # Отображаем DataFrame в интерфейсе для проверки
     except ZeroDivisionError:
         st.error("Ошибка: деление на ноль невозможно.")
     except Exception as e:
