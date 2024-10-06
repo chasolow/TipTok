@@ -120,9 +120,15 @@ if st.button('РАСЧЁТ'):
                 "Стоимость": cost
             }
 
+            # Добавление новой строки
             df = df.append(new_row, ignore_index=True)
-            df.to_excel(file_path, index=False)
-            st.success("Данные успешно записаны в файл.")
+
+            # Попробуем записать в Excel с обработкой ошибок
+            try:
+                df.to_excel(file_path, index=False)
+                st.success("Данные успешно записаны в файл.")
+            except Exception as e:
+                st.error(f"Ошибка записи в файл: {e}")
 
     except ZeroDivisionError:
         st.error("Ошибка: деление на ноль невозможно.")
