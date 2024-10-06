@@ -100,9 +100,11 @@ if st.button('РАСЧЁТ'):
             if os.path.exists(file_path):
                 df = pd.read_excel(file_path)
                 new_index = len(df) + 1
+                st.write("Файл существует, добавление новой записи.")
             else:
                 df = pd.DataFrame(columns=["№", "Тип услуги", "P", "Pдоп", "U", "КРМ", "Схемы", "Участки", "ЭП", "Согласование", "Стоимость"])
                 new_index = 1
+                st.write("Создан новый файл.")
 
             new_row = {
                 "№": new_index,
@@ -120,6 +122,7 @@ if st.button('РАСЧЁТ'):
 
             df = df.append(new_row, ignore_index=True)
             df.to_excel(file_path, index=False)
+            st.success("Данные успешно записаны в файл.")
 
     except ZeroDivisionError:
         st.error("Ошибка: деление на ноль невозможно.")
