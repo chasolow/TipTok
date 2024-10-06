@@ -106,6 +106,9 @@ if st.button('РАСЧЁТ'):
                 new_index = 1
                 st.write("Создан новый файл.")
 
+            # Проверка перед добавлением
+            st.write(f"Проверяем данные для добавления: {new_index}, 'КЭЭ', {P}, {Pdop}, {Ku}, {Ktg}, {schemes}, {X}, {Y}, {Kc}, {cost}")
+
             new_row = {
                 "№": new_index,
                 "Тип услуги": "КЭЭ",
