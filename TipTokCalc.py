@@ -2,6 +2,8 @@ import streamlit as st
 import requests
 from io import BytesIO
 from PIL import Image
+import pandas as pd
+from openpyxl import load_workbook
 
 # Подключаем стили
 st.markdown("""
@@ -76,10 +78,6 @@ else:
     P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=None)
     Pdop = None
 
-# Преобразуем текст в числа для расчетов
-#P = float(P)
-#Pdop = float(Pdop) if Pdop else None
-
 st.markdown("", unsafe_allow_html=True) #Разрыв
 
 # Выбор класса напряжения с помощью radio
@@ -118,6 +116,34 @@ Kc = st.radio("Требуется ли сопровождение согласо
 
 st.markdown("", unsafe_allow_html=True) #Разрыв
 
+# Функция для записи данных в Excel
+def save_to_excel(data):
+    file_path = r'C:\Users\wanss\OneDrive\Рабочий стол\TipTok\Статистика\Калькулятор.xlsx'
+    try:
+        # Загружаем существующий файл Excel
+        book = load_workbook(file_path)
+        writer = pd.ExcelWriter(file_path, engine='openpyxl')
+        writer.book = book
+
+        # Читаем текущие данные из файла
+        df_existing = pd.read_excel(file_path)
+
+        # Определяем следующий порядковый номер
+        next_index = len(df_existing) + 1
+
+        # Добавляем новые данные в DataFrame
+        df_new = pd.DataFrame(data)
+        df_new.insert(0, '№', range(next_index, next_index + len(df_new)))  # Вставляем столбец с порядковыми номерами
+        df_result = pd.concat([df_existing, df_new], ignore_index=True)
+
+        # Сохраняем в файл
+        df_result.to_excel(writer, index=False)
+        writer.save()
+        st.success("Данные успешно сохранены в Excel!")
+
+    except Exception as e:
+        st.error(f"Ошибка при записи в Excel: {e}")
+
 # Кнопка расчета
 if st.button('РАСЧЁТ'):
     try:
@@ -149,10 +175,24 @@ if st.button('РАСЧЁТ'):
                 unsafe_allow_html=True
             )
 
+            # Подготовка данных для записи в Excel
+            data = {
+                'Тип услуги': ['КЭЭ'],
+                'P': [P],
+                'Pдоп': [Pdop],
+                'U': [Ku],
+                'КРМ': [Ktg],
+                'Схемы': [schemes],
+                'Участки': [X],
+                'ЭП': [Y],
+                'Согласование': [Kc],
+                'Стоимость': [cost]
+            }
 
-
+            # Сохранение данных
+            save_to_excel(data)
 
     except ZeroDivisionError:
-        st.error("Ошибка: деление на ноль невозможно.")
-    except ValueError as e:
+        st.error("Ошибка: деление на ноль!")
+    except Exception as e:
         st.error(f"Ошибка: {e}")
