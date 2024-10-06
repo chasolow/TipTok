@@ -92,7 +92,7 @@ if st.button('РАСЧЁТ'):
             )
 
             # Сохранение статистики
-            stats_file = 'statistics.xlsx'
+            stats_file = r'C:\Users\wanss\OneDrive\Рабочий стол\TipTok\statistics.xlsx'
             if os.path.exists(stats_file):
                 df = pd.read_excel(stats_file)
             else:
