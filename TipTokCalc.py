@@ -107,10 +107,14 @@ if st.button('РАСЧЁТ'):
 
             # Сбор статистики
             statistics_file_path = r"C:\Users\wanss\OneDrive\Рабочий стол\TipTok\Calc_stat.xlsx"
+            st.write(f"Путь к файлу статистики: {statistics_file_path}")  # Отладочная информация
+
             if os.path.isfile(statistics_file_path):
                 df = pd.read_excel(statistics_file_path)
+                st.write("Файл существует, загружаем данные.")  # Отладочная информация
             else:
                 df = pd.DataFrame(columns=["№", "Тип услуги", "P", "Pдоп", "U", "КРМ", "Схемы", "Участки", "ЭП", "Согласование", "Стоимость"])
+                st.write("Файл не существует, создаем новый DataFrame.")  # Отладочная информация
 
             # Добавляем новую строку
             new_row = {
@@ -128,10 +132,12 @@ if st.button('РАСЧЁТ'):
             }
 
             df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+            st.write("Добавляем новую строку: ", new_row)  # Отладочная информация
 
             # Записываем данные в Excel
             with pd.ExcelWriter(statistics_file_path, engine='openpyxl', mode='w' if not os.path.isfile(statistics_file_path) else 'a') as writer:
                 df.to_excel(writer, index=False)
+                st.write("Данные записаны в файл.")  # Отладочная информация
 
     except ZeroDivisionError:
         st.error("Ошибка: деление на ноль невозможно.")
