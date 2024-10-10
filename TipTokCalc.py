@@ -70,10 +70,10 @@ power_question = st.radio("Есть ли на объекте существую�
 
 # Поля для ввода мощности с использованием number_input
 if power_question == '⚡️ Да':
-    P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=None)
-    Pdop = st.number_input("Введите дополнительную мощность (Pдоп, кВт):", min_value=0, max_value=500000, step=1, value=None)
+    P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=0)
+    Pdop = st.number_input("Введите дополнительную мощность (Pдоп, кВт):", min_value=0, max_value=500000, step=1, value=0)
 else:
-    P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=None)
+    P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=0)
     Pdop = None
 
 st.markdown("", unsafe_allow_html=True)  # Разрыв
@@ -104,11 +104,8 @@ if schemes == '✅ Есть':
     X = st.number_input("Количество участков ЛЭП от центра питания до каждого электроприемника:", min_value=0, max_value=5000, step=1, value=0)
     Y = st.number_input("Количество электроприемников:", min_value=0, max_value=5000, step=1, value=0)
 else:
-    Y = st.number_input("Количество электроприемников:", min_value=0, max_value=5000, step=1)
-    if Y is not None and Y > 0:  # Добавлена проверка на None и положительное значение
-        X = Y * 1.05
-    else:
-        X = None  # Инициализируем X как None, если Y не введено или равно нулю
+    Y = st.number_input("Количество электроприемников:", min_value=0, max_value=5000, step=1, value=0)
+    X = Y * 1.05  # Установим X равным 105% от Y
 
 st.markdown("", unsafe_allow_html=True)  # Разрыв
 
@@ -133,17 +130,21 @@ if st.button('РАСЧЁТ'):
                 Gy = 379.89 * Y ** -0.271
                 Gz = 0  # Gz не рассчитываем
             else:
-                Gx = 1892.9 * (Y * 1.05) ** -0.544  # Используем Y для расчета Gx
-                Gy = 379.89 * Y ** -0.271
-                Gz = 966.81 * 2 * (Y * 1.05) ** -0.424
+                # Здесь используем Y для расчета Gx
+                Gx = 1892.9 * (Y * 1.05) ** -0.544 if Y > 0 else None
+                Gy = 379.89 * Y ** -0.271 if Y > 0 else None
+                Gz = 966.81 * 2 * (Y * 1.05) ** -0.424 if Y > 0 else None
 
             # Общая стоимость
-            cost = round(((X * Gx + Y * Gy) * Kp * Ku_value * Ktg_value * Kc_value + X * Gz) / 100) * 100
-            st.markdown(
-                f"""
-                <div style='background-color: rgba(46, 139, 87, 0.15); padding: 20px; border-radius: 10px; text-align: center;'>
-                    <h1>Общая стоимость услуги: {cost} руб.</h1>
-                </div>
-                """, unsafe_allow_html=True)
+            if X is not None and Y is not None and Gx is not None and Gy is not None:
+                cost = round(((X * Gx + Y * Gy) * Kp * Ku_value * Ktg_value * Kc_value + (X * Gz if Gz is not None else 0)) / 100) * 100
+                st.markdown(
+                    f"""
+                    <div style='background-color: rgba(46, 139, 87, 0.15); padding: 20px; border-radius: 10px; text-align: center;'>
+                        <h1>Общая стоимость услуги: {cost} руб.</h1>
+                    </div>
+                    """, unsafe_allow_html=True)
+            else:
+                st.error("Пожалуйста, проверьте введенные значения.")
     except Exception as e:
         st.error(f"Ошибка: {str(e)}")
