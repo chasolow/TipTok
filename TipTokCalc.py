@@ -53,7 +53,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # URL изображения
-image_url = "https://s.iimg.su/s/10/9DZIIr0wJMOXyzgjqTkQwbvo21qnRsUVLeXn1vzh.png"
+image_url = "https://i.postimg.cc/vZmHCG8k/big.png"
 
 # Загрузка изображения
 response = requests.get(image_url)
@@ -105,10 +105,10 @@ if schemes == '✅ Есть':
     Y = st.number_input("Количество электроприемников:", min_value=0, max_value=5000, step=1, value=None)
 else:
     Y = st.number_input("Количество электроприемников:", min_value=0, max_value=5000, step=1, value=None)
-    if Y is not None:
+    if Y is not None and Y > 0:  # Добавлена проверка на None и положительное значение
         X = Y * 1.05
     else:
-        X = None  # Инициализируем X как None, если Y не введено
+        X = None  # Инициализируем X как None, если Y не введено или равно нулю
 
 st.markdown("", unsafe_allow_html=True)  # Разрыв
 
@@ -142,12 +142,8 @@ if st.button('РАСЧЁТ'):
             st.markdown(
                 f"""
                 <div style='background-color: rgba(46, 139, 87, 0.15); padding: 20px; border-radius: 10px; text-align: center;'>
-                    <h1 style='color: #F4B03F;'>Общая стоимость: {cost} рублей</h1>
+                    <h1>Общая стоимость услуги: {cost} руб.</h1>
                 </div>
-                """,
-                unsafe_allow_html=True
-            )
-    except ZeroDivisionError:
-        st.error("Ошибка: деление на ноль невозможно.")
-    except ValueError as e:
-        st.error(f"Ошибка: {e}")
+                """, unsafe_allow_html=True)
+    except Exception as e:
+        st.error(f"Ошибка: {str(e)}")
