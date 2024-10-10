@@ -49,6 +49,20 @@ st.markdown("""
                 height: auto;
             }
         }
+        .contact-button {
+            display: flex;
+            justify-content: center;  /* Выравнивание по центру */
+            margin-top: 20px;
+        }
+        .contact-button button {
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #F4B03F;
+            color: #535353;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -61,6 +75,15 @@ image = Image.open(BytesIO(response.content))
 
 # Отображаем изображение
 st.image(image)
+
+# Добавляем кнопку "Контакты" под изображением
+st.markdown("""
+    <div class="contact-button">
+        <a href="https://tiptok.taplink.ws/" target="_blank">
+            <button>Контакты</button>
+        </a>
+    </div>
+""", unsafe_allow_html=True)
 
 # Заголовок
 st.markdown("<h1>Расчет стоимости услуг</h1>", unsafe_allow_html=True)
