@@ -101,10 +101,10 @@ st.markdown("", unsafe_allow_html=True)  # Разрыв
 schemes = st.radio("Есть ли схемы питания электроприемников на объекте?", ['✅ Есть', '❌ Нет'])
 
 if schemes == '✅ Есть':
-    Y = st.number_input("Количество электроприемников:", min_value=0, max_value=5000, step=1, value=0)
-    X = st.number_input("Количество участков ЛЭП от центра питания до каждого электроприемника:", min_value=0, max_value=5000, step=1, value=0)
+    Y = st.number_input("Количество электроприемников:", min_value=0, max_value=5000, step=1, value=10)
+    X = st.number_input("Количество участков ЛЭП от центра питания до каждого электроприемника:", min_value=0, max_value=5000, step=1, value=15)
 else:
-    Y = st.number_input("Количество электроприемников:", min_value=0, max_value=5000, step=1, value=0)
+    Y = st.number_input("Количество электроприемников:", min_value=0, max_value=5000, step=1, value=10)
     X = Y * 1.05  # Установим X равным 105% от Y
 
 st.markdown("", unsafe_allow_html=True)  # Разрыв
