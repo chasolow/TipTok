@@ -53,7 +53,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # URL изображения
-image_url = "https://i.postimg.cc/vZmHCG8k/big.png"
+image_url = "https://s.iimg.su/s/10/9DZIIr0wJMOXyzgjqTkQwbvo21qnRsUVLeXn1vzh.png"
 
 # Загрузка изображения
 response = requests.get(image_url)
