@@ -73,7 +73,7 @@ if power_question == '⚡️ Да':
     P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=50)
     Pdop = st.number_input("Введите дополнительную мощность (Pдоп, кВт):", min_value=0, max_value=500000, step=1, value=35)
 else:
-    P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=0)
+    P = st.number_input("Введите суммарную мощность объекта (P, кВт):", min_value=0, max_value=500000, step=1, value=15)
     Pdop = None
 
 st.markdown("", unsafe_allow_html=True)  # Разрыв
