@@ -67,7 +67,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # URL изображения
-image_url = "https://i.ibb.co/cQBdPWZ/big1.png"
+image_url = "https://vk.com/doc576722484_685679478?hash=evZ0G97TVBZisMoKN9lCtFt43Om83CeSeDRPPxAxixH&dl=K7vejLMVOtnsZFRXyussZ2H09XUvtInqby8LVIBqq48"
 
 # Загрузка изображения
 response = requests.get(image_url)
